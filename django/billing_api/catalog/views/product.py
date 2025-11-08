@@ -2,13 +2,13 @@
 from rest_framework import viewsets, filters
 from catalog.models import Product
 from catalog.serializers import ProductSerializer
-from catalog.permissions import IsAdminOrReadOnly
+#from catalog.permissions import IsAdminOrReadOnly
 from catalog.pagination import StandardResultsSetPagination
 
 class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.select_related("category").all()
     serializer_class = ProductSerializer
-    permission_classes = (IsAdminOrReadOnly,)
+    #permission_classes = (IsAdminOrReadOnly,)
     pagination_class = StandardResultsSetPagination
     filter_backends = (filters.SearchFilter, filters.OrderingFilter)
     search_fields = ("name","slug","category__name")
